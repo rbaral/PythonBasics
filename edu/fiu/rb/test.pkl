@@ -1,0 +1,9 @@
+(lp0
+I1
+aNaS'Stan1'
+p1
+a.(lp0
+I1
+aNaS'Stan2'
+p1
+a.
