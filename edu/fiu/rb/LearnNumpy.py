@@ -1,4 +1,5 @@
 __author__ = 'rbaral'
+#Ref: http://cs231n.github.io/python-numpy-tutorial/#numpy
 import numpy as np
 
 def slicing():
