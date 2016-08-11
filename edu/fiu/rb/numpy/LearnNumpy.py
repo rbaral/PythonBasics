@@ -1,8 +1,14 @@
 __author__ = 'rbaral'
 #Ref: http://cs231n.github.io/python-numpy-tutorial/#numpy
+#Ref: Python for Data Analysis by Wes McKinney
 import numpy as np
 import timeit
+import matplotlib.pyplot as plt
 
+'''
+array slices are views to the original array, so the
+modification to the view will be reflected in the original array
+'''
 def slicing():
     # Create the following rank 2 array with shape (3, 4)
     # [[ 1  2  3  4]
@@ -299,6 +305,49 @@ def numpyMisc():
     print c
     d = np.array([1+2j, 3+4j, 5+6*1j])#array with the complex numbers
     print d.dtype
+    arr = np.random.randn(5, 4) # normally-distributed data
+    print arr.mean() # get the mean of all the elements
+    print arr.mean(axis=1) # get the mean of elements on axis=1
+    arr = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])
+    arr.cumsum(0) # cumulative sum across axis =0
+    arr.cumprod(1) # cumulative product acros axis =1
+    arr = np.random.randn(5, 3)
+    print arr
+    arr.sort(1) # sort the array across axis =1
+    print arr
+    large_arr = np.random.randn(1000)
+    large_arr.sort()
+    print large_arr[int(0.05 * len(large_arr))] # 5% quantile
+    # find unique elements in a list
+    names = np.array(['Bob', 'Joe', 'Will', 'Bob', 'Will', 'Joe', 'Joe'])
+    print np.unique(names)
+    # check if elements of one array is present in another
+    values = np.array([6, 0, 0, 3, 2, 5, 6])
+    print np.in1d(values, [2, 3, 6]) # checks if the element of values are present in the given list and returns boolean array
+
+'''
+plot (x^2+y^2)^0.5
+'''
+def plotQuadratic():
+    points = np.arange(-5, 5, 0.01) # 1000 equally spaced points
+    # create a 2-D array from the combination of elements of the two 1-D arrays
+    xs, ys = np.meshgrid(points, points)
+    z = np.sqrt(xs ** 2 + ys ** 2)
+    plt.imshow(z, cmap=plt.cm.gray)
+    #plt.colorbar()
+    plt.title("Image plot of $\sqrt{x^2 + y^2}$ for a grid of values")
+    plt.show()
+
+'''
+apply np.where for the conditional operator
+'''
+def cond():
+    xarr = np.array([1.1, 1.2, 1.3, 1.4, 1.5])
+    yarr = np.array([2.1, 2.2, 2.3, 2.4, 2.5])
+    cond = np.array([True, False, True, True, False])
+    result = np.where(cond, xarr, yarr) # when True take the element from first array, else take the element from the second array
+    print result
+
 
 if __name__=="__main__":
     print "started"
@@ -308,4 +357,9 @@ if __name__=="__main__":
     #innerProducts()
     #arrayComputation()
     #broadCasting()
-    outerProduct()
+    #outerProduct()
+    #plotQuadratic()
+    #cond()
+
+
+
