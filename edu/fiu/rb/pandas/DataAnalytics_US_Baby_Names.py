@@ -10,7 +10,6 @@ TODOS:
 1) given a year, find the top N male, female names
 2) top N popular names for year range (extension of 1)
 3) trend in the names for every 5 years (which one decreased, which one increased)
-4)
 '''
 
 import pandas as pd
@@ -146,4 +145,29 @@ def lastLetterRevolution():
     dny_ts = letter_prop.ix[['d', 'n', 'y'], 'M'].T
     plt.show(dny_ts.plot())
 
-lastLetterRevolution()
+#lastLetterRevolution()
+
+'''
+analyze the names that were common to boys
+before and later to girls
+'''
+def boyNamesChangedToGirlNames():
+    all_names = top1000.name.unique()
+    # get the names that start with 'lesl'
+    mask = np.array(['lesl' in x.lower() for x in all_names])
+    lesley_like = all_names[mask]
+    #print lesley_like
+    # filter the dataframes that have the 'lesl' keywords
+    filtered = top1000[top1000.name.isin(lesley_like)]
+    #print filtered.groupby('name').births.sum()
+    # aggregate by sex and year
+    table = filtered.pivot_table('births', index='year', columns='sex', aggfunc='sum')
+    # normalize
+    table = table.div(table.sum(1), axis=0)
+    #print table.tail()
+    # plot it
+    plt.show(table.plot(style={'M': 'k-', 'F': 'k--'}, title ="Proportion of male/female Lesley-like names over time"))
+
+
+boyNamesChangedToGirlNames()
+
