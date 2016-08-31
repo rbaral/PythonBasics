@@ -93,7 +93,7 @@ def getTop1000():
     return top1000
 
 top1000 = getTop1000()
-#print top1000
+print top1000
 #print top1000[top1000['year']==2015][:10]
 # get the boys data from top1000
 boys = top1000[top1000.sex == 'M']
@@ -169,5 +169,6 @@ def boyNamesChangedToGirlNames():
     plt.show(table.plot(style={'M': 'k-', 'F': 'k--'}, title ="Proportion of male/female Lesley-like names over time"))
 
 
-boyNamesChangedToGirlNames()
+#boyNamesChangedToGirlNames()
+
 
