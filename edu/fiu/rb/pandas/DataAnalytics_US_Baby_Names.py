@@ -15,6 +15,7 @@ TODOS:
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
 
 '''
 read a sample csv file
@@ -28,7 +29,8 @@ names1880 = readDataFile()
 #print names1880
 # count the birth by the gender
 birth_count_gender = names1880.groupby('sex').births.sum()
-#print birth_count_gender
+print birth_count_gender
+sys.exit(1)
 '''
 merge all the data files and get
 a single dataframe
